@@ -14,21 +14,39 @@ Each of the functions take a dataframe as input, and provide back insightful inf
 
 ### `assocMatrix()`
 #### Description
-Using Cramer's V, the association matrix shows pair-wise relationships between categorical variables with up to a specified number of levels
+Using Cramer's V, the association matrix shows pair-wise relationships between categorical variables with up to a specified number of levels (default is 6)
 #### Usage
 `assocMatrix(dat, n.levels = 6, plotTitle = "default", val.label = FALSE)`
 #### Arguments
 
 * `dat` Dataframe with at least 2 categorical variables
-* `n.levels`	Specifying the number of levels for all categorical variables to be considered (default is 6)
+* `n.levels` Specifying the number of levels for all categorical variables to be considered (default is 6)
 * `plotTitle` Optional string specifying the title of the plot
 * `val.label` Boolean determining whether to add values of coefficients to the plot (default is FALSE)
 
 ### `corrMatrix()`
-### `getStats()`
+#### Description
+Using Pearson's correlation coefficient, the correlation matrix shows pair-wise relationships between continuous variables
 
+#### Usage
+`corrMatrix(dat, plotTitle = "default", val.label = FALSE)`
+#### Arguments
+
+* `dat` Dataframe with at least 2 continuous variables
+* `plotTitle` Optional string specifying the title of the plot
+* `val.label` Boolean determining whether to add values of coefficients to the plot (default is FALSE)
+
+### `getStats()`
+Retrieves standard statistics from a dataframe
+
+#### Usage
+`getStats(dat)`
+#### Arguments
+
+* `dat` Dataframe with at least 2 continuous variables
 
 ### Examples
+#### Description
 Example of using the `assocMatrix` function:
 
 `assocMatrix(mtcars)`
