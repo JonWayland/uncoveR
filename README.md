@@ -10,6 +10,25 @@ This package is currently only supported by R, but has plans to be extended to P
 
 Each of the functions take a dataframe as input, and provide back insightful information about the data within the dataframe. Additional arguments are optional for formatting with each of the plotting functions, but are not required.
 
+### Help
+
+#### `assocMatrix()`
+##### Description
+Using Cramer's V, the association matrix shows pair-wise relationships between categorical variables with up to a specified number of levels
+##### Usage
+`assocMatrix(dat, n.levels = 6, plotTitle = "default", val.label = FALSE)`
+##### Arguments
+
+* `dat` Dataframe with at least 2 categorical variables
+* `n.levels`	Specifying the number of levels for all categorical variables to be considered (default is 6)
+* `plotTitle` Optional string specifying the title of the plot
+* `val.label` Boolean determining whether to add values of coefficients to the plot (default is FALSE)
+
+#### `corrMatrix()`
+#### `getStats()`
+
+
+### Examples
 Example of using the `assocMatrix` function:
 
 `assocMatrix(mtcars)`
