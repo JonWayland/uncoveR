@@ -33,4 +33,5 @@ High-level statistics for the sleep dataset:
      - 2 columns are factor variables
      - 0 columns are date variables
    Estimated Size: 2,984 bytes
+   Total Potential Outlying Observations: 0
 ```
