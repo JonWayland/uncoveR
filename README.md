@@ -1,14 +1,15 @@
-# uncoveR
-## Tools for exploring datasets
+# uncoveRing Insights in Data
+## Overview
 
-`install_github("JonWayland/uncoveR")`
-
-This package is currently only supported by R, but has plans to be extended to Python. The goal of this project is to create functions that explore datasets by having the dataframe be the sole source of input. The current functions include the following:
+The goal of this package is to create functions that explore datasets by having the dataframe be the sole source of input. The current functions include the following:
 * `assocMatrix()`
 * `corrMatrix()`
 * `getStats()`
 
 Each of the functions take a dataframe as input, and provide back insightful information about the data within the dataframe. Additional arguments are optional for formatting with each of the plotting functions, but are not required.
+
+## Installation
+`devtools::install_github("JonWayland/uncoveR")`
 
 ## Help
 
@@ -24,17 +25,27 @@ Using Cramer's V, the association matrix shows pair-wise relationships between c
 * `plotTitle` Optional string specifying the title of the plot
 * `val.label` Boolean determining whether to add values of coefficients to the plot (default is FALSE)
 
+#### Examples
+`assocMatrix(mtcars)`
+
+![Association Matrix](/images/Association%20Matrix%20mtcars.png)
+
 ### `corrMatrix()`
 #### Description
 Using Pearson's correlation coefficient, the correlation matrix shows pair-wise relationships between continuous variables
 
 #### Usage
 `corrMatrix(dat, plotTitle = "default", val.label = FALSE)`
+
 #### Arguments
 
 * `dat` Dataframe with at least 2 continuous variables
 * `plotTitle` Optional string specifying the title of the plot
 * `val.label` Boolean determining whether to add values of coefficients to the plot (default is FALSE)
+
+#### Examples
+`corrMatrix(iris, val.label = TRUE)`
+![Correlation Matrix](/images/Correlation%20Matrix%20iris.png)
 
 ### `getStats()`
 Retrieves standard statistics from a dataframe
@@ -45,22 +56,7 @@ Retrieves standard statistics from a dataframe
 
 * `dat` Dataframe with at least 2 continuous variables
 
-### Examples
-#### Description
-Example of using the `assocMatrix` function:
-
-`assocMatrix(mtcars)`
-
-![Association Matrix](/images/Association%20Matrix%20mtcars.png)
-
-Example of using the `corrMatrix` function:
-
-`corrMatrix(iris, val.label = TRUE)`
-
-![Correlation Matrix](/images/Correlation%20Matrix%20iris.png)
-
-Example of using the `getStats` function:
-
+#### Examples
 `getStats(sleep)`
 ```
 High-level statistics for the sleep dataset:
