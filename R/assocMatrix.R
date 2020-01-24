@@ -19,7 +19,7 @@ assocMatrix <- function(dat, n.levels = 6, plotTitle = "default", val.label = FA
   plotTitle <- if(plotTitle == "default"){paste0("Association Matrix for the ",deparse(substitute(dat)) ," Dataset")} else{plotTitle}
   catFields <- c()
   for(nm in names(dat)){
-    if(length(levels(factor(dat[nm][,1]))) <= n.levels){
+    if(length(levels(factor(dat[nm][,1]))) <= n.levels & length(levels(factor(dat[nm][,1]))) > 1){
       catFields <- append(catFields, nm)
     }
   }
