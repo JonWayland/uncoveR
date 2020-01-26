@@ -83,15 +83,14 @@ Identifying all columns with no variance
 ```
 sub_iris  <- iris[1:50,]
 noVarCols(sub_iris)
-```
 
-```
 Species 
       5
 ```
 ```
 sub_iris <- sub_iris[,-noVarCols(sub_iris)]
 head(sub_iris)
+
   Sepal.Length Sepal.Width Petal.Length Petal.Width
 1          5.1         3.5          1.4         0.2
 2          4.9         3.0          1.4         0.2
