@@ -3,3 +3,4 @@
 export(assocMatrix)
 export(corrMatrix)
 export(getStats)
+export(noVarCols)
