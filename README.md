@@ -5,6 +5,7 @@ The goal of this package is to create functions that explore datasets by having 
 * `assocMatrix()`
 * `corrMatrix()`
 * `getStats()`
+* `noVarCols()`
 
 Each of the functions take a dataframe as input, and provide back insightful information about the data within the dataframe. Additional arguments are optional for formatting with each of the plotting functions, but are not required.
 
@@ -54,7 +55,7 @@ Retrieves standard statistics from a dataframe
 `getStats(dat)`
 #### Arguments
 
-* `dat` Dataframe with at least 2 continuous variables
+* `dat` Dataframe
 
 #### Examples
 `getStats(sleep)`
@@ -67,4 +68,34 @@ High-level statistics for the sleep dataset:
      - 0 columns are date variables
    Estimated Size: 2,984 bytes
    Total Potential Outlying Observations: 0
+```
+
+### `noVarCols()`
+Identifying all columns with no variance
+
+#### Usage
+`noVarCols(dat)`
+#### Arguments
+
+* `dat` Dataframe
+
+#### Examples
+```
+sub_iris  <- iris[1:50,]
+noVarCols(sub_iris)
+
+Species 
+      5
+```
+```
+sub_iris <- sub_iris[,-noVarCols(sub_iris)]
+head(sub_iris)
+
+  Sepal.Length Sepal.Width Petal.Length Petal.Width
+1          5.1         3.5          1.4         0.2
+2          4.9         3.0          1.4         0.2
+3          4.7         3.2          1.3         0.2
+4          4.6         3.1          1.5         0.2
+5          5.0         3.6          1.4         0.2
+6          5.4         3.9          1.7         0.4
 ```
