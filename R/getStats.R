@@ -55,6 +55,15 @@ getStats <- function(dat){
   factor.message <- ifelse(factor.cnt == 1, " column is a factor variable\n", " columns are factor variables\n")
   date.message <- ifelse(date.cnt == 1, " column is a date variable\n", " columns are date variables\n")
 
+  noVarCols <- function(dat) {
+    catLengths <- lapply(dat, function(x) length(unique(x)))
+    noVarCols <- which(catLengths <= 1)
+    unlist(noVarCols)
+  }
+
+  noVar.cnt <- length(noVarCols(dat))
+
+
   output <- paste0(
     "High-level statistics for the ",deparse(substitute(dat))," dataset:\n",
     "   Total Rows: ",prettyNum(row.cnt,big.mark=",",scientific=FALSE),"\n",
@@ -63,7 +72,8 @@ getStats <- function(dat){
     "     - ", factor.cnt, factor.message,
     "     - ", date.cnt, date.message,
     "   Estimated Size: ",prettyNum(size,big.mark=",",scientific=FALSE)," bytes","\n",
-    "   Total Potential Outlying Observations: ", prettyNum(outlier.cnt,mark=",",scientific=FALSE)
+    "   Total Potential Outlying Observations: ", prettyNum(outlier.cnt,mark=",",scientific=FALSE), "\n",
+    "   Total Number of Columns with No Variance: ", prettyNum(noVar.cnt, mark=",",scientific=FALSE)
   )
   writeLines(output)
 }
