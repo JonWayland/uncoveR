@@ -3,9 +3,9 @@
 
 The goal of this package is to create functions that explore datasets by having the dataframe be the sole source of input. The current functions include the following:
 * [`assocMatrix()`](#association-matrix)
-* `corrMatrix()`
-* `getStats()`
-* `noVarCols()`
+* [`corrMatrix()`](#correlation-matrix)
+* [`getStats()`](#getting-dataframe-statisics)
+* [`noVarCols()`](#determining-columns-with-no-variance)
 * `scale_form()`
 * `scale_make()`
 
@@ -13,8 +13,6 @@ Each of the functions take a dataframe as input, and provide back insightful inf
 
 ## Installation
 `devtools::install_github("JonWayland/uncoveR")`
-
-## Help
 
 # Association Matrix
 ### `assocMatrix()`
@@ -34,6 +32,7 @@ Using Cramer's V, the association matrix shows pair-wise relationships between c
 
 ![Association Matrix](/images/Association%20Matrix%20mtcars.png)
 
+# Correlation Matrix
 ### `corrMatrix()`
 #### Description
 Using Pearson's correlation coefficient, the correlation matrix shows pair-wise relationships between continuous variables
@@ -51,6 +50,7 @@ Using Pearson's correlation coefficient, the correlation matrix shows pair-wise 
 `corrMatrix(iris, val.label = TRUE)`
 ![Correlation Matrix](/images/Correlation%20Matrix%20iris.png)
 
+# Getting Dataframe Statisics
 ### `getStats()`
 Retrieves standard statistics from a dataframe
 
@@ -72,7 +72,7 @@ High-level statistics for the sleep dataset:
    Estimated Size: 2,984 bytes
    Total Potential Outlying Observations: 0
 ```
-
+# Determining Columns with No Variance
 ### `noVarCols()`
 Identifying all columns with no variance
 
