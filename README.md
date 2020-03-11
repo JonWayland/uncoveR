@@ -2,10 +2,12 @@
 ## Overview
 
 The goal of this package is to create functions that explore datasets by having the dataframe be the sole source of input. The current functions include the following:
-* `assocMatrix()`
+* [`assocMatrix()`](#assocmatrix())
 * `corrMatrix()`
 * `getStats()`
 * `noVarCols()`
+* `scale_form()`
+* `scale_make()`
 
 Each of the functions take a dataframe as input, and provide back insightful information about the data within the dataframe. Additional arguments are optional for formatting with each of the plotting functions, but are not required.
 
