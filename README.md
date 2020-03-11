@@ -2,7 +2,7 @@
 ## Overview
 
 The goal of this package is to create functions that explore datasets by having the dataframe be the sole source of input. The current functions include the following:
-* [`assocMatrix()`](#assocmatrix())
+* [`assocMatrix()`](#association-matrix)
 * `corrMatrix()`
 * `getStats()`
 * `noVarCols()`
@@ -16,6 +16,7 @@ Each of the functions take a dataframe as input, and provide back insightful inf
 
 ## Help
 
+# Association Matrix
 ### `assocMatrix()`
 #### Description
 Using Cramer's V, the association matrix shows pair-wise relationships between categorical variables with up to a specified number of levels (default is 6)
