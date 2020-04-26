@@ -13,12 +13,12 @@ getStats <- function(dat){
   if(!is.data.frame(dat)){stop(paste0(deparse(substitute(dat))," is not a dataframe"))}
 
   tukeyHigh <- function(v){
-    IQR <- quantile(v,0.75)-quantile(v,0.25)
-    1.5*IQR+quantile(v,0.75)
+    IQR <- quantile(v,0.75, na.rm = TRUE)-quantile(v,0.25, na.rm = TRUE)
+    1.5*IQR+quantile(v,0.75, na.rm = TRUE)
   }
   tukeyLow <- function(v){
-    IQR <- quantile(v,0.75)-quantile(v,0.25)
-    quantile(v,0.25) - 1.5*IQR
+    IQR <- quantile(v,0.75, na.rm = TRUE)-quantile(v,0.25, na.rm = TRUE)
+    quantile(v,0.25, na.rm = TRUE) - 1.5*IQR
   }
 
   # Checking for potential outliers
@@ -47,9 +47,9 @@ getStats <- function(dat){
   col.cnt <- ncol(dat)
   size <- utils::object.size(dat)
 
-  numeric.cnt <- sum(sapply(dat, is.numeric))
-  factor.cnt <- sum(sapply(dat, is.factor))
-  date.cnt <- sum(sapply(dat, is.Date))
+  numeric.cnt <- sum(sapply(dat, is.numeric), na.rm = TRUE)
+  factor.cnt <- sum(sapply(dat, is.factor), na.rm = TRUE)
+  date.cnt <- sum(sapply(dat, is.Date), na.rm = TRUE)
 
   numeric.message <- ifelse(numeric.cnt == 1, " column is a numeric variable\n", " columns are numeric variables\n")
   factor.message <- ifelse(factor.cnt == 1, " column is a factor variable\n", " columns are factor variables\n")
