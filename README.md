@@ -4,6 +4,7 @@
 The goal of this package is to create functions that explore datasets by having the dataframe be the sole source of input. The current functions include the following:
 * [`assocMatrix()`](#association-matrix)
 * [`corrMatrix()`](#correlation-matrix)
+* [`corrFinder()`](#correlation-finder)
 * [`getStats()`](#getting-dataframe-statisics)
 * [`noVarCols()`](#determining-columns-with-no-variance)
 * `scale_form()`
@@ -49,6 +50,32 @@ Using Pearson's correlation coefficient, the correlation matrix shows pair-wise 
 #### Examples
 `corrMatrix(iris, val.label = TRUE)`
 ![Correlation Matrix](/images/Correlation%20Matrix%20iris.png)
+
+# Correlation Finder
+### `corrMatrix()`
+#### Description
+Using Pearson's correlation coefficient, the correlation finder stores pair-wise relationships between continuous variables as well as the average correlation with all other variables
+
+#### Usage
+`corrFinder(dat, strongest = TRUE, weakest = FALSE)`
+
+#### Arguments
+
+* `dat` Dataframe with at least 2 continuous variables
+* `strongest` Boolean indicating whether to order the output by the strongest absolute correlations (default is TRUE)
+* `weakest` Boolean indicating whether to order the output by the weakest absolute correlations (default is FALSE)
+
+#### Examples
+```
+corrFinder(iris)
+          Var1         Var2 correlation      p_value var1_avg_cor var2_avg_cor
+6  Petal.Width Petal.Length   0.9628654 4.675004e-86    0.4715602    0.4687264
+2 Petal.Length Sepal.Length   0.8717538 1.038667e-47    0.4687264    0.5240417
+4  Petal.Width Sepal.Length   0.8179411 2.325498e-37    0.4715602    0.5240417
+3 Petal.Length  Sepal.Width  -0.4284401 4.513314e-08    0.4687264   -0.3040453
+5  Petal.Width  Sepal.Width  -0.3661259 4.073229e-06    0.4715602   -0.3040453
+1  Sepal.Width Sepal.Length  -0.1175698 1.518983e-01   -0.3040453    0.5240417
+```
 
 # Getting Dataframe Statisics
 ### `getStats()`
