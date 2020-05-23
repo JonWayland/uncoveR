@@ -11,7 +11,7 @@
 #' std.fit <- scale_form(iris, remove.me = c("Sepal.Width"))
 #' iris2 <- scale_make(iris, std.fit, scaler = "standard")
 #' head(iris2)
-scale_form <- function(dfr, remove.me = c(), exclude.binary = TRUE){
+scale_form <- function(dat, remove.me = c(), exclude.binary = TRUE){
   # Determining which features need to be scaled
   scaleCols <- function(x){
     if(exclude.binary){
@@ -22,26 +22,26 @@ scale_form <- function(dfr, remove.me = c(), exclude.binary = TRUE){
     }
   }
 
-  ind <- sapply(dfr, scaleCols)
+  ind <- sapply(dat, scaleCols)
 
   # Determining which fields to keep based on the remove.me argument
-  keep.fields <- names(dfr[,ind])[!names(dfr[,ind]) %in% remove.me]
+  keep.fields <- names(dat[,ind])[!names(dat[,ind]) %in% remove.me]
 
   # Function for building the mean/stdev for each feature
-  myScales <- function(dfr){
+  myScales <- function(dat){
     scalers <- data.frame(
-      COL_NAME = names(dfr),
+      COL_NAME = names(dat),
       COL_MEAN = 0,
       COL_SD = 0,
       COL_MIN = 0,
       COL_MAX = 0
     )
 
-    for(i in 1:ncol(dfr)){
-      scalers$COL_MEAN[i] <- mean(dfr[,i])
-      scalers$COL_SD[i] <- sd(dfr[,i])
-      scalers$COL_MIN[i] <- min(dfr[,i])
-      scalers$COL_MAX[i] <- max(dfr[,i])
+    for(i in 1:ncol(dat)){
+      scalers$COL_MEAN[i] <- mean(dat[,i])
+      scalers$COL_SD[i] <- sd(dat[,i])
+      scalers$COL_MIN[i] <- min(dat[,i])
+      scalers$COL_MAX[i] <- max(dat[,i])
     }
     return(scalers)
   }

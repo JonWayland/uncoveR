@@ -7,8 +7,8 @@ The goal of this package is to create functions that explore datasets by having 
 * [`corrFinder()`](#correlation-finder)
 * [`getStats()`](#getting-dataframe-statisics)
 * [`noVarCols()`](#determining-columns-with-no-variance)
-* `scale_form()`
-* `scale_make()`
+* [`scale_form()`](#fitting-the-scales-of-numeric-data)
+* [`scale_make()`]()
 
 Each of the functions take a dataframe as input, and provide back insightful information about the data within the dataframe. Additional arguments are optional for formatting with each of the plotting functions, but are not required.
 
@@ -128,4 +128,52 @@ head(sub_iris)
 4          4.6         3.1          1.5         0.2
 5          5.0         3.6          1.4         0.2
 6          5.4         3.9          1.7         0.4
+```
+
+# Fitting the Scales of Numeric Data
+### `scale_form()`
+#### Description
+Fitting the summary statistics from training data needed to scale new data
+#### Usage
+`scale_form(dat, remove.me = c(), exclude.binary = TRUE)`
+#### Arguments
+
+* `dat` Dataframe with at least 1 numeric variable
+* `remove.me` List of columns that are to be manually removed from the scaling
+* `exclude.binary` Boolean determining whether to exclude binary columns from scaling
+
+#### Examples
+`std.fit <- scale_form(iris, remove.me = c("Sepal.Width"))`
+```std.fit
+
+      COL_NAME COL_MEAN    COL_SD COL_MIN COL_MAX
+1 Sepal.Length 5.843333 0.8280661     4.3     7.9
+2 Petal.Length 3.758000 1.7652982     1.0     6.9
+3  Petal.Width 1.199333 0.7622377     0.1     2.5
+```
+
+# Scaling Data with Fitted Scales
+### `scale_make()`
+#### Description
+Scaling new data with fitted scales
+#### Usage
+`scale_make(dat, scale_data, scaler = c('standard', 'minmax'))`
+#### Arguments
+
+* `dat` Dataframe with columns that are to be scaled
+* `scale_data` Fitted scales using the `scale_form` function
+* `scaler` Type of scales to be applied. Default is standardization.
+
+#### Examples
+`std.fit <- scale_form(iris, remove.me = c("Sepal.Width"))`
+`scaled_iris <- scale_make(iris, std.fit, scaler = "standard")`
+```summary(scaled_iris)
+
+  Sepal.Length       Sepal.Width     Petal.Length      Petal.Width            Species  
+ Min.   :-1.86378   Min.   :2.000   Min.   :-1.5623   Min.   :-1.4422   setosa    :50  
+ 1st Qu.:-0.89767   1st Qu.:2.800   1st Qu.:-1.2225   1st Qu.:-1.1799   versicolor:50  
+ Median :-0.05233   Median :3.000   Median : 0.3354   Median : 0.1321   virginica :50  
+ Mean   : 0.00000   Mean   :3.057   Mean   : 0.0000   Mean   : 0.0000                  
+ 3rd Qu.: 0.67225   3rd Qu.:3.300   3rd Qu.: 0.7602   3rd Qu.: 0.7880                  
+ Max.   : 2.48370   Max.   :4.400   Max.   : 1.7799   Max.   : 1.7064                
 ```
