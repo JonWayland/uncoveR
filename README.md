@@ -8,7 +8,7 @@ The goal of this package is to create functions that explore datasets by having 
 * [`getStats()`](#getting-dataframe-statisics)
 * [`noVarCols()`](#determining-columns-with-no-variance)
 * [`scale_form()`](#fitting-the-scales-of-numeric-data)
-* [`scale_make()`]()
+* [`scale_make()`](#scaling-data-with-fitted-scales)
 
 Each of the functions take a dataframe as input, and provide back insightful information about the data within the dataframe. Additional arguments are optional for formatting with each of the plotting functions, but are not required.
 
