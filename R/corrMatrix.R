@@ -10,6 +10,8 @@
 #' @examples
 #' corrMatrix(iris)
 corrMatrix <- function(dat, plotTitle = "default", val.label = FALSE){
+  require(dplyr)
+  require(ggplot2)
   plotTitle <- if(plotTitle == "default"){paste0("Correlation Matrix for the ",deparse(substitute(dat)) ," Dataset")} else{plotTitle}
   numFields <- c()
   for(nm in names(dat)){
@@ -25,7 +27,7 @@ corrMatrix <- function(dat, plotTitle = "default", val.label = FALSE){
         Var1 = numFields[i]
         Var2 = numFields[j]
 
-        cor.val <- cor(dat[,numFields[i]], dat[,numFields[j]])
+        cor.val <- cor(dat[,numFields[i]], dat[,numFields[j]], use = "complete.obs")
 
         dfr <- rbind(dfr, data.frame(Var1 = Var1, Var2 = Var2, correlation = cor.val))
       }
