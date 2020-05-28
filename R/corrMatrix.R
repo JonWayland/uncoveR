@@ -47,7 +47,7 @@ corrMatrix <- function(dat, plotTitle = "default", val.label = FALSE){
     ggplot(aes(x=Var1,y=Var2,fill=correlation))+
     geom_tile()+
     scale_fill_gradientn(name = "Correlation Coefficient",
-                         colors = c("navy", "white", "red"),
+                         colors = c("firebrick2", "white", "chartreuse2"),
                          limits = c(-1.0, 1.0),
                          breaks = c(-1.0, 0.0, 1.0),
                          labels = c("-1.0", "0.0", "1.0"))+

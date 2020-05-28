@@ -65,7 +65,7 @@ assocMatrix <- function(dat, n.levels = 6, plotTitle = "default", val.label = FA
     ggplot(aes(x=Var1,y=Var2,fill=cramersV_score))+
     geom_tile()+
     scale_fill_gradientn(name = "Cramer's V",
-                         colors = c("white", "red"),
+                         colors = c("white", "chartreuse2"),
                          limits = c(0.0, 1.0),
                          breaks = c(0.0, 1.0),
                          labels = c("0.0", "1.0"))+
