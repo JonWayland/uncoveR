@@ -6,13 +6,14 @@
 #' @param n.levels Specifying the number of levels for all categorical variables to be considered (default is 6)
 #' @param plotTitle Optional string specifying the title of the plot
 #' @param val.label Boolean determining whether to add values of coefficients to the plot (default is FALSE)
+#' @param output Specifying whether the output is to be a plot of raw data (default is plot)
 #'
 #' @return Heat map style plot displaying the strength of pair-wise associations in categorical variables
 #' @export
 #'
 #' @examples
 #' assocMatrix(mtcars)
-assocMatrix <- function(dat, n.levels = 6, plotTitle = "default", val.label = FALSE){
+assocMatrix <- function(dat, n.levels = 6, plotTitle = "default", val.label = FALSE, output = 'plot'){
   require(ggplot2)
   require(dplyr)
 
@@ -52,29 +53,36 @@ assocMatrix <- function(dat, n.levels = 6, plotTitle = "default", val.label = FA
     }
   }
 
-  # Recreating the values for each pair of variables
-  dfr <- rbind(dfr, data.frame(Var1 = dfr$Var2, Var2 = dfr$Var1, cramersV_score = dfr$cramersV_score))
+  # Return the raw data if output = 'raw'
+  if(output == 'raw'){
+    return(dfr %>% filter(Var1 != Var2))
+  }
 
-  # Reordering
-  dfr$Var2 <- factor(dfr$Var2, levels = levels(dfr$Var1))
+  if(output == 'plot'){
+    # Recreating the values for each pair of variables
+    dfr <- rbind(dfr, data.frame(Var1 = dfr$Var2, Var2 = dfr$Var1, cramersV_score = dfr$cramersV_score))
 
-  # Tile Plot
-  dfr %>%
-    rowwise() %>%
-    mutate(valLabel = ifelse(val.label,cramersV_score,NA)) %>%
-    ggplot(aes(x=Var1,y=Var2,fill=cramersV_score))+
-    geom_tile()+
-    scale_fill_gradientn(name = "Cramer's V",
-                         colors = c("white", "chartreuse2"),
-                         limits = c(0.0, 1.0),
-                         breaks = c(0.0, 1.0),
-                         labels = c("0.0", "1.0"))+
-    geom_text(aes(x = Var1, y = Var2, label = round(valLabel,2)))+
-    scale_x_discrete(name = "")+
-    scale_y_discrete(name = "")+
-    ggtitle(plotTitle)+
-    theme_classic() +
-    theme(axis.text.x = element_text(angle = 45, hjust = 1))
+    # Reordering
+    dfr$Var2 <- factor(dfr$Var2, levels = levels(dfr$Var1))
+
+    # Tile Plot
+    dfr %>%
+      rowwise() %>%
+      mutate(valLabel = ifelse(val.label,cramersV_score,NA)) %>%
+      ggplot(aes(x=Var1,y=Var2,fill=cramersV_score))+
+      geom_tile()+
+      scale_fill_gradientn(name = "Cramer's V",
+                           colors = c("white", "chartreuse2"),
+                           limits = c(0.0, 1.0),
+                           breaks = c(0.0, 1.0),
+                           labels = c("0.0", "1.0"))+
+      geom_text(aes(x = Var1, y = Var2, label = round(valLabel,2)))+
+      scale_x_discrete(name = "")+
+      scale_y_discrete(name = "")+
+      ggtitle(plotTitle)+
+      theme_classic() +
+      theme(axis.text.x = element_text(angle = 45, hjust = 1))
+  }
 }
 
 assocMatrix(mtcars, val.label = TRUE)

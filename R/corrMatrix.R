@@ -3,15 +3,17 @@
 #' @param dat Dataframe with at least 2 numeric variables
 #' @param plotTitle Optional string specifying the title of the plot
 #' @param val.label Boolean determining whether to add values of coefficients to the plot (default is FALSE)
+#' @param output Specifying whether the output is to be a plot of raw data (default is plot)
 #'
 #' @return Heat map style plot displaying the strength of pair-wise correlations in numeric variables
 #' @export
 #'
 #' @examples
 #' corrMatrix(iris)
-corrMatrix <- function(dat, plotTitle = "default", val.label = FALSE){
+corrMatrix <- function(dat, plotTitle = "default", val.label = FALSE, output = 'plot'){
   require(dplyr)
   require(ggplot2)
+
   plotTitle <- if(plotTitle == "default"){paste0("Correlation Matrix for the ",deparse(substitute(dat)) ," Dataset")} else{plotTitle}
   numFields <- c()
   for(nm in names(dat)){
@@ -34,27 +36,34 @@ corrMatrix <- function(dat, plotTitle = "default", val.label = FALSE){
     }
   }
 
-  # Recreating the values for each pair of variables
-  dfr <- rbind(dfr, data.frame(Var1 = dfr$Var2, Var2 = dfr$Var1, correlation = dfr$correlation))
+  # Return the raw data if output = 'raw'
+  if(output == 'raw'){
+    return(dfr %>% filter(Var1 != Var2))
+  }
 
-  # Reordering
-  dfr$Var2 <- factor(dfr$Var2, levels = levels(dfr$Var1))
+  if(output == 'plot'){
+    # Recreating the values for each pair of variables
+    dfr <- rbind(dfr, data.frame(Var1 = dfr$Var2, Var2 = dfr$Var1, correlation = dfr$correlation))
 
-  # Tile Plot
-  dfr %>%
-    rowwise() %>%
-    mutate(valLabel = ifelse(val.label,correlation,NA)) %>%
-    ggplot(aes(x=Var1,y=Var2,fill=correlation))+
-    geom_tile()+
-    scale_fill_gradientn(name = "Correlation Coefficient",
-                         colors = c("firebrick2", "white", "chartreuse2"),
-                         limits = c(-1.0, 1.0),
-                         breaks = c(-1.0, 0.0, 1.0),
-                         labels = c("-1.0", "0.0", "1.0"))+
-    geom_text(aes(x = Var1, y = Var2, label = round(valLabel,2)))+
-    scale_x_discrete(name = "")+
-    scale_y_discrete(name = "")+
-    ggtitle(plotTitle)+
-    theme_classic() +
-    theme(axis.text.x = element_text(angle = 45, hjust = 1))
+    # Reordering
+    dfr$Var2 <- factor(dfr$Var2, levels = levels(dfr$Var1))
+
+    # Tile Plot
+    dfr %>%
+      rowwise() %>%
+      mutate(valLabel = ifelse(val.label,correlation,NA)) %>%
+      ggplot(aes(x=Var1,y=Var2,fill=correlation))+
+      geom_tile()+
+      scale_fill_gradientn(name = "Correlation Coefficient",
+                           colors = c("firebrick2", "white", "chartreuse2"),
+                           limits = c(-1.0, 1.0),
+                           breaks = c(-1.0, 0.0, 1.0),
+                           labels = c("-1.0", "0.0", "1.0"))+
+      geom_text(aes(x = Var1, y = Var2, label = round(valLabel,2)))+
+      scale_x_discrete(name = "")+
+      scale_y_discrete(name = "")+
+      ggtitle(plotTitle)+
+      theme_classic() +
+      theme(axis.text.x = element_text(angle = 45, hjust = 1))
+  }
 }
