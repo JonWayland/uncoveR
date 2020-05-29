@@ -4,7 +4,8 @@
 \alias{corrMatrix}
 \title{Correlation Matrix}
 \usage{
-corrMatrix(dat, plotTitle = "default", val.label = FALSE)
+corrMatrix(dat, plotTitle = "default", val.label = FALSE,
+  output = "plot")
 }
 \arguments{
 \item{dat}{Dataframe with at least 2 numeric variables}
@@ -12,6 +13,8 @@ corrMatrix(dat, plotTitle = "default", val.label = FALSE)
 \item{plotTitle}{Optional string specifying the title of the plot}
 
 \item{val.label}{Boolean determining whether to add values of coefficients to the plot (default is FALSE)}
+
+\item{output}{Specifying whether the output is to be a plot of raw data (default is plot)}
 }
 \value{
 Heat map style plot displaying the strength of pair-wise correlations in numeric variables

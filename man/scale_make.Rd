@@ -4,14 +4,14 @@
 \alias{scale_make}
 \title{Making the scales on new data}
 \usage{
-scale_make(dfr, scale_data = trainScales, scaler = NA)
+scale_make(dat, scale_data = trainScales, scaler = NA)
 }
 \arguments{
+\item{dat}{Dataframe with continuous variables intended for scaling (uses distribution from training data)}
+
 \item{scale_data}{The object created from calling `scale_form`}
 
 \item{scaler}{Method for scaling. Options include: 'standard', 'minmax'}
-
-\item{dat}{Dataframe with continuous variables intended for scaling (uses distribution from training data)}
 }
 \value{
 Returns the original dataset `dat` with the desired numeric features scaled using the `scaler` method.

@@ -5,7 +5,7 @@
 \title{Creating an Association Matrix}
 \usage{
 assocMatrix(dat, n.levels = 6, plotTitle = "default",
-  val.label = FALSE)
+  val.label = FALSE, output = "plot")
 }
 \arguments{
 \item{dat}{Dataframe with at least 2 categorical variables}
@@ -15,6 +15,8 @@ assocMatrix(dat, n.levels = 6, plotTitle = "default",
 \item{plotTitle}{Optional string specifying the title of the plot}
 
 \item{val.label}{Boolean determining whether to add values of coefficients to the plot (default is FALSE)}
+
+\item{output}{Specifying whether the output is to be a plot of raw data (default is plot)}
 }
 \value{
 Heat map style plot displaying the strength of pair-wise associations in categorical variables

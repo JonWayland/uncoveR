@@ -4,14 +4,14 @@
 \alias{scale_form}
 \title{Fitting the form for scaling features}
 \usage{
-scale_form(dfr, remove.me = c(), exclude.binary = TRUE)
+scale_form(dat, remove.me = c(), exclude.binary = TRUE)
 }
 \arguments{
+\item{dat}{Dataframe with continuous variables intended for scaling}
+
 \item{remove.me}{Vector of variable names to be excluded from scaling}
 
 \item{exclude.binary}{Boolean determining whether to exclude scaling binary features that are measured as numeric. Default is TRUE.}
-
-\item{dat}{Dataframe with continuous variables intended for scaling}
 }
 \value{
 Returns information about each feature needed for scaling.
