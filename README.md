@@ -27,6 +27,7 @@ Using Cramer's V, the association matrix shows pair-wise relationships between c
 * `n.levels` Specifying the number of levels for all categorical variables to be considered (default is 6)
 * `plotTitle` Optional string specifying the title of the plot
 * `val.label` Boolean determining whether to add values of coefficients to the plot (default is FALSE)
+* `output` Specifying whether the output is to be a plot of raw data (default is plot)
 
 #### Examples
 `assocMatrix(mtcars)`
@@ -46,6 +47,7 @@ Using Pearson's correlation coefficient, the correlation matrix shows pair-wise 
 * `dat` Dataframe with at least 2 continuous variables
 * `plotTitle` Optional string specifying the title of the plot
 * `val.label` Boolean determining whether to add values of coefficients to the plot (default is FALSE)
+* `output` Specifying whether the output is to be a plot of raw data (default is plot)
 
 #### Examples
 `corrMatrix(iris, val.label = TRUE)`
@@ -143,8 +145,9 @@ Fitting the summary statistics from training data needed to scale new data
 * `exclude.binary` Boolean determining whether to exclude binary columns from scaling
 
 #### Examples
-`std.fit <- scale_form(iris, remove.me = c("Sepal.Width"))`
-```std.fit
+```
+std.fit <- scale_form(iris, remove.me = c("Sepal.Width"))
+std.fit
 
       COL_NAME COL_MEAN    COL_SD COL_MIN COL_MAX
 1 Sepal.Length 5.843333 0.8280661     4.3     7.9
@@ -165,9 +168,10 @@ Scaling new data with fitted scales
 * `scaler` Type of scales to be applied. Default is standardization.
 
 #### Examples
-`std.fit <- scale_form(iris, remove.me = c("Sepal.Width"))`
-`scaled_iris <- scale_make(iris, std.fit, scaler = "standard")`
-```summary(scaled_iris)
+```
+std.fit <- scale_form(iris, remove.me = c("Sepal.Width"))
+scaled_iris <- scale_make(iris, std.fit, scaler = "standard")
+summary(scaled_iris)
 
   Sepal.Length       Sepal.Width     Petal.Length      Petal.Width            Species  
  Min.   :-1.86378   Min.   :2.000   Min.   :-1.5623   Min.   :-1.4422   setosa    :50  
