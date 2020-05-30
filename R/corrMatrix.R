@@ -14,6 +14,8 @@ corrMatrix <- function(dat, plotTitle = "default", val.label = FALSE, output = '
   require(dplyr)
   require(ggplot2)
 
+  if(!is.data.frame(dat)){stop(paste0('Object `',deparse(substitute(dat)),'` is not a dataframe! Please input a dataframe with at least 2 numeric fields.'))}
+
   plotTitle <- if(plotTitle == "default"){paste0("Correlation Matrix for the ",deparse(substitute(dat)) ," Dataset")} else{plotTitle}
   numFields <- c()
   for(nm in names(dat)){
@@ -21,6 +23,8 @@ corrMatrix <- function(dat, plotTitle = "default", val.label = FALSE, output = '
       numFields <- append(numFields, nm)
     }
   }
+
+  if(length(numFields) == 0){stop(paste0('Object `',deparse(substitute(dat)),'` has no numeric fields! Please input a dataframe with at least 2 numeric fields.'))}
 
   dfr <- data.frame(Var1 = as.character(), Var2 = as.character(), cramersV_score = as.numeric())
   for(i in 1:length(numFields)){

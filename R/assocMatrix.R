@@ -17,6 +17,8 @@ assocMatrix <- function(dat, n.levels = 6, plotTitle = "default", val.label = FA
   require(ggplot2)
   require(dplyr)
 
+  if(!is.data.frame(dat)){stop(paste0('Object `',deparse(substitute(dat)),'` is not a dataframe! Please input a dataframe with at least 2 categorical fields.'))}
+
   plotTitle <- if(plotTitle == "default"){paste0("Association Matrix for the ",deparse(substitute(dat)) ," Dataset")} else{plotTitle}
   catFields <- c()
   for(nm in names(dat)){
@@ -24,6 +26,8 @@ assocMatrix <- function(dat, n.levels = 6, plotTitle = "default", val.label = FA
       catFields <- append(catFields, nm)
     }
   }
+
+  if(length(catFields) == 0){stop(paste0('Object `',deparse(substitute(dat)),'` has no categorical fields! Please input a dataframe with at least 2 categorical fields.'))}
 
   dfr <- data.frame(Var1 = as.character(), Var2 = as.character(), cramersV_score = as.numeric())
   for(i in 1:length(catFields)){
@@ -84,5 +88,3 @@ assocMatrix <- function(dat, n.levels = 6, plotTitle = "default", val.label = FA
       theme(axis.text.x = element_text(angle = 45, hjust = 1))
   }
 }
-
-assocMatrix(mtcars, val.label = TRUE)
