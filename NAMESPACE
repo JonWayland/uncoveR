@@ -3,6 +3,7 @@
 export(assocMatrix)
 export(corrFinder)
 export(corrMatrix)
+export(expose)
 export(getStats)
 export(noVarCols)
 export(scale_form)
