@@ -4,8 +4,7 @@
 \alias{corrMatrix}
 \title{Correlation Matrix}
 \usage{
-corrMatrix(dat, plotTitle = "default", val.label = FALSE,
-  output = "plot")
+corrMatrix(dat, plotTitle = "default", val.label = FALSE, output = "plot")
 }
 \arguments{
 \item{dat}{Dataframe with at least 2 numeric variables}

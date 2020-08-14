@@ -4,8 +4,13 @@
 \alias{assocMatrix}
 \title{Creating an Association Matrix}
 \usage{
-assocMatrix(dat, n.levels = 6, plotTitle = "default",
-  val.label = FALSE, output = "plot")
+assocMatrix(
+  dat,
+  n.levels = 6,
+  plotTitle = "default",
+  val.label = FALSE,
+  output = "plot"
+)
 }
 \arguments{
 \item{dat}{Dataframe with at least 2 categorical variables}
