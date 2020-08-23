@@ -35,4 +35,11 @@ read_data <- function(open_dat = ""){
     return(college)
   }
 
+  if(open_dat == 'study'){
+    writeLines('Reading the field of study data set from the US Department of Education: https://collegescorecard.ed.gov/data..')
+    study <- read.csv("https://ed-public-download.app.cloud.gov/downloads/Most-Recent-Field-Data-Elements.csv")
+    getStats(study)
+    return(study)
+  }
+
 }

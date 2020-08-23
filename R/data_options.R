@@ -14,7 +14,8 @@ data_options <- function(){
     "The following datasets are supported through `read_data`:\n",
     "   pophealth: Fictional healthcare dataset\n",
     "   datascience: Random job posting data from Glassdoor for data science positions from January, 2019\n",
-    "   college: Most recent institution-level data from the US Department of Education College Scorecard (https://collegescorecard.ed.gov/data/)"
+    "   college: Most recent institution-level data from the US Department of Education College Scorecard (https://collegescorecard.ed.gov/data/)\n",
+    "   study: Most recent data by field of study from the US Department of Education College Scorecard (https://collegescorecard.ed.gov/data/)"
     )
   writeLines(output)
 }
