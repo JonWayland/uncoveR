@@ -26,7 +26,7 @@ corrMatrix <- function(dat, plotTitle = "default", val.label = FALSE, output = '
 
   if(length(numFields) == 0){stop(paste0('Object `',deparse(substitute(dat)),'` has no numeric fields! Please input a dataframe with at least 2 numeric fields.'))}
 
-  dfr <- data.frame(Var1 = as.character(), Var2 = as.character(), cramersV_score = as.numeric())
+  dfr <- data.frame(Var1 = as.character(), Var2 = as.character(), correlation = as.numeric())
   for(i in 1:length(numFields)){
     for(j in 1:length(numFields)){
       if(i >= j){
@@ -50,7 +50,7 @@ corrMatrix <- function(dat, plotTitle = "default", val.label = FALSE, output = '
     dfr <- rbind(dfr, data.frame(Var1 = dfr$Var2, Var2 = dfr$Var1, correlation = dfr$correlation))
 
     # Reordering
-    dfr$Var2 <- factor(dfr$Var2, levels = levels(dfr$Var1))
+    dfr$Var2 <- factor(dfr$Var2, levels = levels(as.factor(dfr$Var1)))
 
     # Tile Plot
     dfr %>%
