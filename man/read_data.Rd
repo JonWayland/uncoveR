@@ -4,7 +4,7 @@
 \alias{read_data}
 \title{Reading open-sourced data}
 \usage{
-read_data(open_dat)
+read_data(open_dat = "")
 }
 \arguments{
 \item{open_dat}{Character string specifying the dataset the user wishes to read. Use `uncoveR::data_options()` to see the dataset options available.}
@@ -16,5 +16,6 @@ Dataframe object containing the data specified.
 This function is set up to pull open sourced datasets from the web.
 }
 \examples{
-healthDat <- read_data(open_dat = 'pophealth')
+healthDat <- read_data('pophealth')
+dataSci <- read_data('datascience')
 }
