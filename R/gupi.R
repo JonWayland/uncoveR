@@ -1,11 +1,13 @@
 #' Guilty Until Proven Innocent
 #'
-#' @param v
+#' @param v vector of numeric values to assess whether outliers exist
 #'
-#' @return
+#' @return dataframe with two columns: `index` and `value`. The `index` column represents which row contains the outlier, while the `value` row contains the outlying value
 #' @export
 #'
 #' @examples
+#' iris[gupi(iris$Sepal.Width)$index,]
+#'
 gupi <- function(v){
   outliers <- data.frame(index = as.numeric(), value = as.numeric())
   for(i in 1:length(v)){
