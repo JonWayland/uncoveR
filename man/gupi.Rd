@@ -7,11 +7,15 @@
 gupi(v)
 }
 \arguments{
-\item{v}{}
+\item{v}{vector of numeric values to assess whether outliers exist}
 }
 \value{
-
+dataframe with two columns: `index` and `value`. The `index` column represents which row contains the outlier, while the `value` row contains the outlying value
 }
 \description{
 Guilty Until Proven Innocent
+}
+\examples{
+iris[gupi(iris$Sepal.Width)$index,]
+
 }
