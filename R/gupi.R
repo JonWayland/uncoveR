@@ -12,9 +12,9 @@ gupi <- function(v){
   outliers <- data.frame(index = as.numeric(), value = as.numeric())
   for(i in 1:length(v)){
     v_new <- v[-i]
-    v_mu <- mean(v_new)
-    v_cut <- 3*sd(v_new)
-    if(v[i] < v_mu - v_cut | v[i] > v_mu + v_cut){
+    v_mu <- mean(v_new) # calculates mean for vector without value i
+    v_cut <- 3*sd(v_new) # 3 times the standard deviation for vector without value i
+    if(v[i] < v_mu - v_cut | v[i] > v_mu + v_cut){ # If value i is less than or greater than 3 times the vector without value i then it is an outlier
       outliers <- rbind(outliers, data.frame(
         index = i, value = v[i]
       ))
